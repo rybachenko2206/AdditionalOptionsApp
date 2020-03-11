@@ -11,6 +11,8 @@ import UIKit
 class OrderViewController: UIViewController, Storyboardable {
     
     // MARK: - Outlets
+    @IBOutlet weak var luggageLabel: UILabel!
+    @IBOutlet weak var luggageSwitch: UISwitch!
     
     
     // MARK: - Properties
@@ -18,12 +20,15 @@ class OrderViewController: UIViewController, Storyboardable {
         return .main
     }
     
+    private var config = AppConfigurations()
+    
     
     // MARK: - Overiden funcs
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupLocalization()
+        setupConfigurations()
     }
     
     
@@ -34,4 +39,19 @@ class OrderViewController: UIViewController, Storyboardable {
         optionsVc.modalPresentationStyle = .overFullScreen
         self.present(optionsVc, animated: true, completion: nil)
     }
+    
+    @IBAction func luggageValueChanged(_ sender: UISwitch) {
+        config.hasExtraLuggage = sender.isOn
+    }
+    
+    
+    // MARK: - Private funcs
+    private func setupConfigurations() {
+        luggageSwitch.isOn = config.hasExtraLuggage
+    }
+    
+    private func setupLocalization() {
+        // TODO: set localization
+    }
+    
 }

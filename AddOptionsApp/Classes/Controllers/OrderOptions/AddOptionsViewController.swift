@@ -6,7 +6,9 @@
 //  Copyright © 2020 Roman Rybachenko. All rights reserved.
 //
 
+
 import UIKit
+
 
 class AddOptionsViewController: UIViewController, Storyboardable {
     
@@ -21,6 +23,7 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         return .main
     }
     
+    private var viewModel = AddOptionsViewModel()
     
     // MARK: - Overriden funcs
     override func viewDidLoad() {
@@ -44,7 +47,6 @@ class AddOptionsViewController: UIViewController, Storyboardable {
     
     
     // MARK: - Private funcs
-    
     private func setupNavigationView() {
         let imgConfig = UIImage.SymbolConfiguration(weight: .medium)
         let closeImage = UIImage(systemName: "xmark", withConfiguration: imgConfig)
@@ -56,7 +58,8 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         doneButton.setCornerRadius(Constants.barButtonItemsCornerRadius)
         doneButton.setTitleColor(Constants.barButtonItemsTintColor, for: .normal)
         doneButton.backgroundColor = Constants.doneButtonColor
-        doneButton.setTitle("Done", for: .normal)
+        let doneBtnTitle = "Done"
+        doneButton.setTitle(doneBtnTitle, for: .normal)
     }
     
     private func setupTableView() {
@@ -65,6 +68,61 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 0.1, height: 0.1))
         footerView.backgroundColor = .clear
         tableView.tableFooterView = footerView
+        
+        tableView.registerCell(OptionExpandableCell.self)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    private func configureCell(_ cell: OptionExpandableCell, with item: ConditionItem) {
+        cell.optionNameLabel.text = item.type.title
+        cell.infoButton.isHidden = !item.type.hasInfoButton
+        cell.isExpanded = viewModel.selectedConditions.contains(item)
+        cell.additionalInfoTextField.placeholder = item.type.placeholder
+        cell.chekmarkImageView.isHidden = !viewModel.isConditionSelected(item)
+        cell.delegate = self
+    }
+    
+}
+
+extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRows(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let optionItem = viewModel.conditionItem(at: indexPath) else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: OptionExpandableCell.self)
+        configureCell(cell, with: optionItem)
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.userDidSelectCondition(at: indexPath)
+        
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return viewModel.heightForRow(at: indexPath)
+    }
+    
+}
+
+
+extension AddOptionsViewController: OptionExpandableCellDelegate {
+    func infoButtonTapped(in cell: OptionExpandableCell) {
+        AlertsManager.showFeatureInDevelopmentAlert(to: self)
     }
 }
 

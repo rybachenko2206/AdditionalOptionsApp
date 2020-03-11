@@ -41,6 +41,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aIq-0f-rhQ">
                                         <rect key="frame" x="347" y="12" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="luggageValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="3up-ex-dji"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -65,6 +68,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="luggageLabel" destination="yBJ-g2-28z" id="7cn-wR-ugu"/>
+                        <outlet property="luggageSwitch" destination="aIq-0f-rhQ" id="O1N-Fw-ffb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
