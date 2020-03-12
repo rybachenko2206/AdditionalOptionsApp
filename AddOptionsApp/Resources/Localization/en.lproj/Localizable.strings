@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  AddOptionsApp
+
+  Created by Roman Rybachenko on 12.03.2020.
+  Copyright © 2020 Roman Rybachenko. All rights reserved.
+*/
+
+
+"AddOptions.Table.Header.Title" = "Additional Services";
+
+"UKAddCondition.Animal.TextFieldPlaceholder" = "Pet type";
+"UKAddCondition.WithSign.TextFieldPlaceholder" = "Text on the sign";
+
+"UKAddConditions.baggage.title" = "Extra luggage";
+"UKAddConditions.animal.title" = "Going with pet";
+"UKAddConditions.conditioner.title" = "Air conditioning";
+"UKAddConditions.courier_delivery.title" = "Delivery";
+"UKAddConditions.check.title" = "Check (not found info)";
+"UKAddConditions.english_speaker.title" = "English spiking driver";
+"UKAddConditions.baby_chair.title" = "Baby car seat (beta)";
+"UKAddConditions.non_smoker.title" = "Non-Smoking driver";
+"UKAddConditions.silence.title" = "Driver keeps silent";
+"UKAddConditions.with_sign.title" = "Meet me with a sign";

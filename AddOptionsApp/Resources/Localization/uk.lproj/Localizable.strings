@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  AddOptionsApp
+
+  Created by Roman Rybachenko on 12.03.2020.
+  Copyright © 2020 Roman Rybachenko. All rights reserved.
+*/
+
+
+
+"AddOptions.Table.Header.Title" = "Додаткові послуги";
+
+"UKAddCondition.Animal.TextFieldPlaceholder" = "Вид тварини";
+"UKAddCondition.WithSign.TextFieldPlaceholder" = "Текст на табличці";
+
+"UKAddConditions.baggage.title" = "Дод. багаж у салоні";
+"UKAddConditions.animal.title" = "Я везу тварину";
+"UKAddConditions.conditioner.title" = "Кондиціонер";
+"UKAddConditions.courier.title" = "Кур'єр";
+"UKAddConditions.check.title" = "Check (тут незрозуміло)";
+"UKAddConditions.engSpeaker.title" = "Водій розмовляє англійською";
+"UKAddConditions.babyChair.title" = "Дитяче крісло (beta)";
+"UKAddConditions.nonSmoker.title" = "Водій не палить";
+"UKAddConditions.silence.title" = "Водій мовчазний";
+"UKAddConditions.withSign.title" = "Зустріти мене з табличкою";
