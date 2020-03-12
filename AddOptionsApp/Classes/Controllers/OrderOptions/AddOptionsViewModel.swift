@@ -14,7 +14,7 @@ class AddOptionsViewModel {
     
     // MARK: - Properties
     private let conditions: [ConditionItem]
-    var selectedConditions: Set<ConditionItem> = []
+    private var selectedConditions: Set<String> = []
     
     // MARK: - Init funcs
     init() {
@@ -37,7 +37,7 @@ class AddOptionsViewModel {
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
         guard let item = conditionItem(at: indexPath) else { return 0 }
-        if selectedConditions.contains(item) && item.type.isExpandable {
+        if selectedConditions.contains(item.type.rawValue) && item.type.isExpandable {
             return OptionExpandableCell.expandedHeight
         } else {
             return OptionExpandableCell.height
@@ -45,15 +45,15 @@ class AddOptionsViewModel {
     }
     
     func isConditionSelected(_ conditionItem: ConditionItem) -> Bool {
-        return selectedConditions.contains(conditionItem)
+        return selectedConditions.contains(conditionItem.type.rawValue)
     }
     
     func userDidSelectCondition(at indexPath: IndexPath) {
         guard let item = conditionItem(at: indexPath) else { return }
         if isConditionSelected(item) {
-            selectedConditions.remove(item)
+            selectedConditions.remove(item.type.rawValue)
         } else {
-            selectedConditions.insert(item)
+            selectedConditions.insert(item.type.rawValue)
         }
     }
     

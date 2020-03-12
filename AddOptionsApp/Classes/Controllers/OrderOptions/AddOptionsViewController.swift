@@ -8,12 +8,13 @@
 
 
 import UIKit
+import TPKeyboardAvoiding
 
 
 class AddOptionsViewController: UIViewController, Storyboardable {
     
     // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TPKeyboardAvoidingTableView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
@@ -76,17 +77,31 @@ class AddOptionsViewController: UIViewController, Storyboardable {
     }
     
     private func configureCell(_ cell: OptionExpandableCell, with item: ConditionItem) {
+        cell.delegate = self
         cell.optionNameLabel.text = item.type.title
         cell.infoButton.isHidden = !item.type.hasInfoButton
-        cell.isExpanded = viewModel.selectedConditions.contains(item)
-        cell.additionalInfoTextField.placeholder = item.type.textFieldPlaceholder
+        cell.additionalInfoTextField.text = item.additionalInfo
         cell.chekmarkImageView.isHidden = !viewModel.isConditionSelected(item)
         
         let attrs = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         let attrPlaceholder = NSAttributedString(string: item.type.textFieldPlaceholder, attributes: attrs)
         cell.additionalInfoTextField.attributedPlaceholder = attrPlaceholder
         
-        cell.delegate = self
+        cell.isExpanded = viewModel.isConditionSelected(item) && item.type.isExpandable
+    }
+    
+    private func setTextFieldActiveInCell(at indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? OptionExpandableCell,
+            let cItem = viewModel.conditionItem(at: indexPath)
+            else { return }
+        
+        if viewModel.isConditionSelected(cItem) && cItem.type.isExpandable {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.animationDuration, execute: {
+                cell.additionalInfoTextField.becomeFirstResponder()
+            })
+        } else {
+            view.endEditing(true)
+        }
     }
     
 }
@@ -116,6 +131,8 @@ extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.beginUpdates()
         tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
+        
+        setTextFieldActiveInCell(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -144,8 +161,17 @@ extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 extension AddOptionsViewController: OptionExpandableCellDelegate {
+    
     func infoButtonTapped(in cell: OptionExpandableCell) {
         AlertsManager.showFeatureInDevelopmentAlert(to: self)
+    }
+    
+    func editedAdditionalInfo(_ info: String?, in cell: OptionExpandableCell) {
+        guard let ip = tableView.indexPath(for: cell),
+            let item = viewModel.conditionItem(at: ip)
+            else { return }
+
+        item.additionalInfo = info
     }
 }
 
@@ -164,6 +190,8 @@ extension AddOptionsViewController {
         static let backgroundColor = UIColor.rgba(47, 48, 56)
         static let tableViewBgColor = UIColor.clear
         static let barButtonItemsTintColor = UIColor.white
+        
+        static let animationDuration: TimeInterval = 0.35
     }
     
 }

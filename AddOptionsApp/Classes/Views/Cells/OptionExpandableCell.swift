@@ -10,6 +10,7 @@ import UIKit
 
 protocol OptionExpandableCellDelegate: class {
     func infoButtonTapped(in cell: OptionExpandableCell)
+    func editedAdditionalInfo(_ info: String?, in cell: OptionExpandableCell)
 }
 
 
@@ -47,6 +48,7 @@ class OptionExpandableCell: UITableViewCell, ReusableCell {
         super.awakeFromNib()
         
         setupUI()
+        additionalInfoTextField.delegate = self
     }
     
     
@@ -75,4 +77,13 @@ extension OptionExpandableCell {
         static let separatoLeftOffsetCollapsed: CGFloat = 15
         static let separatoLeftOffsetExpanded: CGFloat = 49
     }
+}
+
+
+extension OptionExpandableCell: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.editedAdditionalInfo(textField.text, in: self)
+    }
+    
 }

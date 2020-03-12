@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		05DABC72241952110093AC6B /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DABC71241952110093AC6B /* AlertsManager.swift */; };
 		05DABC75241960190093AC6B /* OptionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DABC74241960190093AC6B /* OptionsHeaderView.swift */; };
 		05DABC77241960250093AC6B /* OptionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DABC76241960250093AC6B /* OptionsHeaderView.xib */; };
+		05DABC7A241A33900093AC6B /* TPKeyboardAvoiding in Frameworks */ = {isa = PBXBuildFile; productRef = 05DABC79241A33900093AC6B /* TPKeyboardAvoiding */; };
 		05E52CCE24179BDD00372522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E52CCD24179BDD00372522 /* AppDelegate.swift */; };
 		05E52CD024179BDD00372522 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E52CCF24179BDD00372522 /* SceneDelegate.swift */; };
 		05E52CD524179BDD00372522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05E52CD324179BDD00372522 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DABC7A241A33900093AC6B /* TPKeyboardAvoiding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +253,9 @@
 			dependencies = (
 			);
 			name = AddOptionsApp;
+			packageProductDependencies = (
+				05DABC79241A33900093AC6B /* TPKeyboardAvoiding */,
+			);
 			productName = AddOptionsApp;
 			productReference = 05E52CCA24179BDD00372522 /* AddOptionsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -279,6 +284,9 @@
 				Base,
 			);
 			mainGroup = 05E52CC124179BDD00372522;
+			packageReferences = (
+				05DABC78241A33900093AC6B /* XCRemoteSwiftPackageReference "TPKeyboardAvoiding" */,
+			);
 			productRefGroup = 05E52CCB24179BDD00372522 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -522,6 +530,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		05DABC78241A33900093AC6B /* XCRemoteSwiftPackageReference "TPKeyboardAvoiding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michaeltyson/TPKeyboardAvoiding";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		05DABC79241A33900093AC6B /* TPKeyboardAvoiding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05DABC78241A33900093AC6B /* XCRemoteSwiftPackageReference "TPKeyboardAvoiding" */;
+			productName = TPKeyboardAvoiding;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 05E52CC224179BDD00372522 /* Project object */;
 }
