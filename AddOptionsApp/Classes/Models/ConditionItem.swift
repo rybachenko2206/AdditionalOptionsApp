@@ -29,37 +29,8 @@ class ConditionItem: Equatable, Hashable {
         hasher.combine(additionalInfo)
     }
     
-}
-
-
-
-
-
-enum UKAddConditions: String, CaseIterable {
-    case baggage = "baggage"
-    case animal = "animal"
-    case conditioner = "conditioner"
-    case courier = "courier_delivery"
-    case check = "check"
-    case engSpeaker = "english_speaker"
-    case babyChair = "baby_chair"
-    case nonSmoker = "non_smoker"
-    case silence = "silence"
-    case withSign = "with_sign"
-    
-    static var allItems: [UKAddConditions] {
-        var items  = UKAddConditions.allCases
-        
-        let appConfig = AppConfigurations()
-        if appConfig.hasExtraLuggage {
-            items.removeAll(where: { $0 == UKAddConditions.baggage })
-        }
-        
-        return items
-    }
-    
     var title: String {
-        let key = "UKAddConditions.\(self.rawValue).title"
+        let key = "UKAddConditions.\(type.rawValue).title"
         return NSLocalizedString(key, comment: "UKAddConditions title")
     }
     
@@ -69,7 +40,7 @@ enum UKAddConditions: String, CaseIterable {
     }
     
     var hasInfoButton: Bool {
-        switch self {
+        switch type {
         case .baggage,
              .animal,
              .courier,
@@ -81,7 +52,7 @@ enum UKAddConditions: String, CaseIterable {
     }
     
     var textFieldPlaceholder: String {
-        switch self {
+        switch type {
         case .animal:
             return NSLocalizedString("UKAddCondition.Animal.TextFieldPlaceholder" , comment: "")
         case .withSign:
@@ -92,13 +63,53 @@ enum UKAddConditions: String, CaseIterable {
     }
     
     var isExpandable: Bool {
-        switch self {
+        switch type {
         case .animal,
              .withSign:
             return true
         default:
             return false
         }
+    }
+    
+}
+
+
+
+
+
+enum UKAddConditions: String, CaseIterable {
+    case baggage = "baggage"
+    case animal = "animal"
+    case conditioner = "conditioner"
+    case courier = "courier_delivery"
+    case check = "check" // Does not used
+    case engSpeaker = "english_speaker"
+    case babyChair = "baby_chair"
+    case nonSmoker = "non_smoker"
+    case silence = "silence"
+    case withSign = "with_sign"
+    
+    static var allItems: [UKAddConditions] {
+//        var items = UKAddConditions.allCases
+        var items = [
+            UKAddConditions.babyChair,
+            UKAddConditions.courier,
+            UKAddConditions.nonSmoker,
+            UKAddConditions.baggage,
+            UKAddConditions.animal,
+            UKAddConditions.conditioner,
+            UKAddConditions.engSpeaker,
+            UKAddConditions.withSign,
+            UKAddConditions.silence
+        ]
+        
+        let appConfig = AppConfigurations()
+        if appConfig.hasExtraLuggage {
+            items.removeAll(where: { $0 == UKAddConditions.baggage })
+        }
+        
+        return items
     }
     
 }

@@ -86,4 +86,9 @@ extension OptionExpandableCell: UITextFieldDelegate {
         delegate?.editedAdditionalInfo(textField.text, in: self)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

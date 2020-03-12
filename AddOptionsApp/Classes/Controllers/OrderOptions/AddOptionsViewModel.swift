@@ -37,7 +37,7 @@ class AddOptionsViewModel {
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
         guard let item = conditionItem(at: indexPath) else { return 0 }
-        if selectedConditions.contains(item.type.rawValue) && item.type.isExpandable {
+        if selectedConditions.contains(item.type.rawValue) && item.isExpandable {
             return OptionExpandableCell.expandedHeight
         } else {
             return OptionExpandableCell.height

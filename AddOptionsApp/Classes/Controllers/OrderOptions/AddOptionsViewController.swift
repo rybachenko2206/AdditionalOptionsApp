@@ -70,6 +70,11 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         footerView.backgroundColor = .clear
         tableView.tableFooterView = footerView
         
+        let size = CGSize(width: UIScreen.main.bounds.size.width, height: OptionsHeaderView.height)
+        let headerView = OptionsHeaderView(frame: CGRect(origin: .zero, size: size))
+        headerView.titleLabel.text = viewModel.titleForHeader(in: 0)
+        tableView.tableHeaderView = headerView
+        
         tableView.registerCell(OptionExpandableCell.self)
         
         tableView.dataSource = self
@@ -78,16 +83,16 @@ class AddOptionsViewController: UIViewController, Storyboardable {
     
     private func configureCell(_ cell: OptionExpandableCell, with item: ConditionItem) {
         cell.delegate = self
-        cell.optionNameLabel.text = item.type.title
-        cell.infoButton.isHidden = !item.type.hasInfoButton
+        cell.optionNameLabel.text = item.title
+        cell.infoButton.isHidden = !item.hasInfoButton
         cell.additionalInfoTextField.text = item.additionalInfo
         cell.chekmarkImageView.isHidden = !viewModel.isConditionSelected(item)
         
         let attrs = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        let attrPlaceholder = NSAttributedString(string: item.type.textFieldPlaceholder, attributes: attrs)
+        let attrPlaceholder = NSAttributedString(string: item.textFieldPlaceholder, attributes: attrs)
         cell.additionalInfoTextField.attributedPlaceholder = attrPlaceholder
         
-        cell.isExpanded = viewModel.isConditionSelected(item) && item.type.isExpandable
+        cell.isExpanded = viewModel.isConditionSelected(item) && item.isExpandable
     }
     
     private func setTextFieldActiveInCell(at indexPath: IndexPath) {
@@ -95,7 +100,7 @@ class AddOptionsViewController: UIViewController, Storyboardable {
             let cItem = viewModel.conditionItem(at: indexPath)
             else { return }
         
-        if viewModel.isConditionSelected(cItem) && cItem.type.isExpandable {
+        if viewModel.isConditionSelected(cItem) && cItem.isExpandable {
             DispatchQueue.main.asyncAfter(deadline: .now() + Constants.animationDuration, execute: {
                 cell.additionalInfoTextField.becomeFirstResponder()
             })
@@ -139,24 +144,24 @@ extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
         return viewModel.heightForRow(at: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0: return OptionsHeaderView.height
-        default: return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            let size = CGSize(width: UIScreen.main.bounds.size.width, height: OptionsHeaderView.height)
-            let headerView = OptionsHeaderView(frame: CGRect(origin: .zero, size: size))
-            headerView.titleLabel.text = viewModel.titleForHeader(in: section)
-            return headerView
-        default:
-            return nil
-        }
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        switch section {
+//        case 0: return OptionsHeaderView.height
+//        default: return 0
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        switch section {
+//        case 0:
+//            let size = CGSize(width: UIScreen.main.bounds.size.width, height: OptionsHeaderView.height)
+//            let headerView = OptionsHeaderView(frame: CGRect(origin: .zero, size: size))
+//            headerView.titleLabel.text = viewModel.titleForHeader(in: section)
+//            return headerView
+//        default:
+//            return nil
+//        }
+//    }
 }
 
 
