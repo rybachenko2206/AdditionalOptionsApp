@@ -63,7 +63,7 @@ class OrderViewController: UIViewController, Storyboardable {
     }
     
     private func setupLocalization() {
-        // TODO: set localization
+        luggageLabel.text = NSLocalizedString("OrderVC.LuggageIncluded.Text", comment: "")
     }
     
 }

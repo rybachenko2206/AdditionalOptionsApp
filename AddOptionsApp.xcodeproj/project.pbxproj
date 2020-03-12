@@ -148,9 +148,9 @@
 		05E52CE224179BFA00372522 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				05DAD4F0241A46890093AC6B /* Localization */,
 				05E52CE824179C3700372522 /* Storyboards */,
 				05E52CE724179C2E00372522 /* Plists */,
+				05DAD4F0241A46890093AC6B /* Localization */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

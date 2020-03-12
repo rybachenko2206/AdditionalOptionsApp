@@ -16,10 +16,12 @@
 "UKAddConditions.baggage.title" = "Дод. багаж у салоні";
 "UKAddConditions.animal.title" = "Я везу тварину";
 "UKAddConditions.conditioner.title" = "Кондиціонер";
-"UKAddConditions.courier.title" = "Кур'єр";
+"UKAddConditions.courier_delivery.title" = "Кур'єр";
 "UKAddConditions.check.title" = "Check (тут незрозуміло)";
-"UKAddConditions.engSpeaker.title" = "Водій розмовляє англійською";
-"UKAddConditions.babyChair.title" = "Дитяче крісло (beta)";
-"UKAddConditions.nonSmoker.title" = "Водій не палить";
+"UKAddConditions.english_speaker.title" = "Водій розмовляє англійською";
+"UKAddConditions.baby_chair.title" = "Дитяче крісло (beta)";
+"UKAddConditions.non_smoker.title" = "Водій не палить";
 "UKAddConditions.silence.title" = "Водій мовчазний";
-"UKAddConditions.withSign.title" = "Зустріти мене з табличкою";
+"UKAddConditions.with_sign.title" = "Зустріти мене з табличкою";
+
+"OrderVC.LuggageIncluded.Text" = "Додатковий багаж включено?";
