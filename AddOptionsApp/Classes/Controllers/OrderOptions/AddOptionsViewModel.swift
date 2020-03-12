@@ -57,4 +57,15 @@ class AddOptionsViewModel {
         }
     }
     
+    func titleForHeader(in section: Int) -> String? {
+        switch section {
+        case 0:
+            return "AddOptions.Table.Header.Title"
+        default:
+            assertionFailure("incorrect logic")
+            return nil
+        }
+        
+    }
+    
 }

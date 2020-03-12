@@ -117,6 +117,24 @@ extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
         return viewModel.heightForRow(at: indexPath)
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0: return OptionsHeaderView.height
+        default: return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let size = CGSize(width: UIScreen.main.bounds.size.width, height: OptionsHeaderView.height)
+            let headerView = OptionsHeaderView(frame: CGRect(origin: .zero, size: size))
+            headerView.titleLabel.text = viewModel.titleForHeader(in: section)
+            return headerView
+        default:
+            return nil
+        }
+    }
 }
 
 

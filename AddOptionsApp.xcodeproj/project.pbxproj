@@ -10,6 +10,8 @@
 		05DABC6E2419115E0093AC6B /* OptionExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DABC6C2419115E0093AC6B /* OptionExpandableCell.swift */; };
 		05DABC6F2419115E0093AC6B /* OptionExpandableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DABC6D2419115E0093AC6B /* OptionExpandableCell.xib */; };
 		05DABC72241952110093AC6B /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DABC71241952110093AC6B /* AlertsManager.swift */; };
+		05DABC75241960190093AC6B /* OptionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DABC74241960190093AC6B /* OptionsHeaderView.swift */; };
+		05DABC77241960250093AC6B /* OptionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DABC76241960250093AC6B /* OptionsHeaderView.xib */; };
 		05E52CCE24179BDD00372522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E52CCD24179BDD00372522 /* AppDelegate.swift */; };
 		05E52CD024179BDD00372522 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E52CCF24179BDD00372522 /* SceneDelegate.swift */; };
 		05E52CD524179BDD00372522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05E52CD324179BDD00372522 /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 		05DABC6C2419115E0093AC6B /* OptionExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionExpandableCell.swift; sourceTree = "<group>"; };
 		05DABC6D2419115E0093AC6B /* OptionExpandableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionExpandableCell.xib; sourceTree = "<group>"; };
 		05DABC71241952110093AC6B /* AlertsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsManager.swift; sourceTree = "<group>"; };
+		05DABC74241960190093AC6B /* OptionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsHeaderView.swift; sourceTree = "<group>"; };
+		05DABC76241960250093AC6B /* OptionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsHeaderView.xib; sourceTree = "<group>"; };
 		05E52CCA24179BDD00372522 /* AddOptionsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddOptionsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E52CCD24179BDD00372522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05E52CCF24179BDD00372522 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 				05DABC71241952110093AC6B /* AlertsManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		05DABC7324195FB30093AC6B /* HeaderViews */ = {
+			isa = PBXGroup;
+			children = (
+				05DABC74241960190093AC6B /* OptionsHeaderView.swift */,
+				05DABC76241960250093AC6B /* OptionsHeaderView.xib */,
+			);
+			path = HeaderViews;
 			sourceTree = "<group>";
 		};
 		05E52CC124179BDD00372522 = {
@@ -152,6 +165,7 @@
 		05E52CE524179C1B00372522 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05DABC7324195FB30093AC6B /* HeaderViews */,
 				05DABC6B2419112E0093AC6B /* Cells */,
 			);
 			path = Views;
@@ -283,6 +297,7 @@
 				05E52CD724179BDF00372522 /* Assets.xcassets in Resources */,
 				05DABC6F2419115E0093AC6B /* OptionExpandableCell.xib in Resources */,
 				05E52CD524179BDD00372522 /* Main.storyboard in Resources */,
+				05DABC77241960250093AC6B /* OptionsHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +319,7 @@
 				05E52CF22417A12B00372522 /* Array.swift in Sources */,
 				05E52CF62417A13C00372522 /* Storyboardable.swift in Sources */,
 				05E52CF12417A12B00372522 /* UITableView+Methods.swift in Sources */,
+				05DABC75241960190093AC6B /* OptionsHeaderView.swift in Sources */,
 				05E52CFE2417B48F00372522 /* UIColor+Extensions.swift in Sources */,
 				05DABC6E2419115E0093AC6B /* OptionExpandableCell.swift in Sources */,
 				05E52CF52417A13C00372522 /* ReusableCell.swift in Sources */,
