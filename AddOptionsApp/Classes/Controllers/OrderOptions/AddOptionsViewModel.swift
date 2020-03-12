@@ -14,7 +14,7 @@ class AddOptionsViewModel {
     
     // MARK: - Properties
     private let conditions: [ConditionItem]
-    private var selectedConditions: Set<String> = []
+    private var selectedTypes: Set<UKAddConditions> = []
     
     // MARK: - Init funcs
     init() {
@@ -37,7 +37,7 @@ class AddOptionsViewModel {
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
         guard let item = conditionItem(at: indexPath) else { return 0 }
-        if selectedConditions.contains(item.type.rawValue) && item.isExpandable {
+        if selectedTypes.contains(item.type) && item.isExpandable {
             return OptionExpandableCell.expandedHeight
         } else {
             return OptionExpandableCell.height
@@ -45,15 +45,15 @@ class AddOptionsViewModel {
     }
     
     func isConditionSelected(_ conditionItem: ConditionItem) -> Bool {
-        return selectedConditions.contains(conditionItem.type.rawValue)
+        return selectedTypes.contains(conditionItem.type)
     }
     
     func userDidSelectCondition(at indexPath: IndexPath) {
         guard let item = conditionItem(at: indexPath) else { return }
         if isConditionSelected(item) {
-            selectedConditions.remove(item.type.rawValue)
+            selectedTypes.remove(item.type)
         } else {
-            selectedConditions.insert(item.type.rawValue)
+            selectedTypes.insert(item.type)
         }
     }
     
@@ -65,6 +65,10 @@ class AddOptionsViewModel {
             assertionFailure("incorrect logic")
             return nil
         }
+    }
+    
+    func selectedConditions() -> [ConditionItem] {
+        return conditions.filter({ self.selectedTypes.contains($0.type) })
     }
     
 }

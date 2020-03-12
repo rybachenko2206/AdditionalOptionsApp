@@ -35,6 +35,8 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         setupTableView()
     }
     
+    var selectedConditions: (([ConditionItem]) -> Void)?
+    
     
     // MARK: - Actions
     
@@ -43,7 +45,12 @@ class AddOptionsViewController: UIViewController, Storyboardable {
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-        pf()
+        dismiss(animated: true, completion: { [weak self] in
+            guard let conditions = self?.viewModel.selectedConditions(),
+                conditions.count > 0
+                else { return }
+            self?.selectedConditions?(conditions)
+        })
     }
     
     
@@ -111,6 +118,7 @@ class AddOptionsViewController: UIViewController, Storyboardable {
     
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,28 +151,10 @@ extension AddOptionsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.heightForRow(at: indexPath)
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        switch section {
-//        case 0: return OptionsHeaderView.height
-//        default: return 0
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        switch section {
-//        case 0:
-//            let size = CGSize(width: UIScreen.main.bounds.size.width, height: OptionsHeaderView.height)
-//            let headerView = OptionsHeaderView(frame: CGRect(origin: .zero, size: size))
-//            headerView.titleLabel.text = viewModel.titleForHeader(in: section)
-//            return headerView
-//        default:
-//            return nil
-//        }
-//    }
+
 }
 
-
+// MARK: - OptionExpandableCellDelegate
 extension AddOptionsViewController: OptionExpandableCellDelegate {
     
     func infoButtonTapped(in cell: OptionExpandableCell) {
@@ -180,7 +170,7 @@ extension AddOptionsViewController: OptionExpandableCellDelegate {
     }
 }
 
-
+// MARK: -
 extension AddOptionsViewController {
     
     private struct Constants {
@@ -200,3 +190,6 @@ extension AddOptionsViewController {
     }
     
 }
+
+
+

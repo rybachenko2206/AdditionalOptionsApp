@@ -38,6 +38,18 @@ class OrderViewController: UIViewController, Storyboardable {
         let optionsVc = AddOptionsViewController.instantiate()
         optionsVc.modalPresentationStyle = .overFullScreen
         self.present(optionsVc, animated: true, completion: nil)
+        
+        optionsVc.selectedConditions = { [weak self] conditions in
+            pl("selected conditions\n\(conditions)")
+            
+            var message = ""
+            conditions.forEach({
+                message.append($0.title)
+                message.append("\n")
+            })
+            
+            AlertsManager.simpleAlert(title: "Selected conditions", message: message, controller: self)
+        }
     }
     
     @IBAction func luggageValueChanged(_ sender: UISwitch) {
