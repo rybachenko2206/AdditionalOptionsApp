@@ -79,8 +79,13 @@ class AddOptionsViewController: UIViewController, Storyboardable {
         cell.optionNameLabel.text = item.type.title
         cell.infoButton.isHidden = !item.type.hasInfoButton
         cell.isExpanded = viewModel.selectedConditions.contains(item)
-        cell.additionalInfoTextField.placeholder = item.type.placeholder
+        cell.additionalInfoTextField.placeholder = item.type.textFieldPlaceholder
         cell.chekmarkImageView.isHidden = !viewModel.isConditionSelected(item)
+        
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        let attrPlaceholder = NSAttributedString(string: item.type.textFieldPlaceholder, attributes: attrs)
+        cell.additionalInfoTextField.attributedPlaceholder = attrPlaceholder
+        
         cell.delegate = self
     }
     

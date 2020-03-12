@@ -60,7 +60,7 @@ enum UKAddConditions: String, CaseIterable {
     
     var title: String {
         let key = "UKAddConditions.\(self.rawValue).title"
-        return key//NSLocalizedString(key, comment: "UKAddConditions title")
+        return NSLocalizedString(key, comment: "UKAddConditions title")
     }
     
     var infoText: String? {
@@ -80,14 +80,14 @@ enum UKAddConditions: String, CaseIterable {
         }
     }
     
-    var placeholder: String? {
+    var textFieldPlaceholder: String {
         switch self {
         case .animal:
-            return "localized with animalPlacechKey"
+            return NSLocalizedString("UKAddCondition.Animal.TextFieldPlaceholder" , comment: "")
         case .withSign:
-            return "localized with withSignPlacehKey"
+            return NSLocalizedString("UKAddCondition.WithSign.TextFieldPlaceholder" , comment: "")
         default:
-            return nil
+            return ""
         }
     }
     

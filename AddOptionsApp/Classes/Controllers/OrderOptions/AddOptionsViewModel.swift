@@ -60,12 +60,11 @@ class AddOptionsViewModel {
     func titleForHeader(in section: Int) -> String? {
         switch section {
         case 0:
-            return "AddOptions.Table.Header.Title"
+            return NSLocalizedString("AddOptions.Table.Header.Title", comment: "Options header title")
         default:
             assertionFailure("incorrect logic")
             return nil
         }
-        
     }
     
 }
